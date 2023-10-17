@@ -13,7 +13,7 @@ destbp = Blueprint('destination', __name__, url_prefix='/destinations')
 def show(id):
     destination = db.session.scalar(db.select(Destination).where(Destination.id == id))
     cform = CommentForm()
-    return render_template('Destinations/show.html', destination=destination, form=cform)
+    return render_template('destinations/show.html', destination=destination, form=cform)
 
 @destbp.route('/create', methods=['GET', 'POST'])
 @login_required
@@ -32,7 +32,7 @@ def create():
     print('Successfully created new travel destination', 'success')
     #Always end with redirect when form is valid
     return redirect(url_for('destination.create'))
-  return render_template('Destinations/create.html', form=form)
+  return render_template('destinations/create.html', form=form)
 
 @destbp.route('/<id>/comment', methods=['GET', 'POST'])
 @login_required
